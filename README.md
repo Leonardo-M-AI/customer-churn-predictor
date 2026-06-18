@@ -65,4 +65,6 @@ On the test set alone, the model correctly flags customers responsible for an es
 - Build a simple cost-benefit threshold to optimise the precision/recall tradeoff for the retention budget available
 - Deploy the model as a REST API to score customers in real time
 - A/B test a retention offer on the customers flagged as high-risk to validate real-world impact
-  
+## Limitations
+
+The dataset is a single snapshot in time and does not capture seasonal or trend effects. Class imbalance (26.5% churn rate) means precision on the churned class remains moderate (56%), so a portion of flagged customers will not actually churn, a tradeoff favouring recall over precision given the cost asymmetry of losing a customer versus a wasted retention offer.
