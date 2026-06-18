@@ -59,12 +59,13 @@ MIT
 
 On the test set alone, the model correctly flags customers responsible for an estimated $206,000 in annual recurring revenue at risk of being lost. Applied at scale, this kind of model allows a retention team to prioritise outreach toward the customers most likely to leave, rather than spreading limited budget across the entire customer base. Combined with the feature importance analysis, it also gives a clear, actionable signal: contract structure and tenure are the levers most worth addressing in a retention strategy.
 
+## Limitations
+
+The dataset is a single snapshot in time and does not capture seasonal or trend effects. Class imbalance (26.5% churn rate) means precision on the churned class remains moderate (56%) at the default threshold, so a portion of flagged customers will not actually churn. Lowering the decision threshold to 0.3 increases recall to roughly 88% (catching nearly all at-risk customers) at the cost of precision dropping to around 40%, a tradeoff that favours recall when the cost of losing a customer outweighs the cost of a wasted retention offer.
+
 ## What I Would Do Next
 
 - Test gradient boosting models (XGBoost, LightGBM) for a potential accuracy gain
-- Build a simple cost-benefit threshold to optimise the precision/recall tradeoff for the retention budget available
+- Tune the decision threshold based on the actual cost of a retention offer versus the lifetime value of a retained customer
 - Deploy the model as a REST API to score customers in real time
 - A/B test a retention offer on the customers flagged as high-risk to validate real-world impact
-## Limitations
-
-The dataset is a single snapshot in time and does not capture seasonal or trend effects. Class imbalance (26.5% churn rate) means precision on the churned class remains moderate (56%), so a portion of flagged customers will not actually churn, a tradeoff favouring recall over precision given the cost asymmetry of losing a customer versus a wasted retention offer.
